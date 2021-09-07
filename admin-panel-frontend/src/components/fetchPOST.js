@@ -1,4 +1,4 @@
-const url = "http://backend:7770";
+const url = "http://144.91.104.118:7770";
 
 export const post = (directory, bodyData) => fetch(`${url}${directory}`,{
     method: 'POST',
