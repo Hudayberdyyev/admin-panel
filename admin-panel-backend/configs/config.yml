@@ -5,7 +5,7 @@ server:
 
 db:
   host: "db"
-  port: 5470
+  port: 5432
   dbname: "postgres"
   username: "postgres"
   password: "@%!)(^"
@@ -13,7 +13,7 @@ db:
 
 storage:
   host: "storage"
-  port: "9070"
+  port: "9000"
   username: "admin"
   password: "1jan@%!)(^"
   sslmode: false
