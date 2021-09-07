@@ -1,4 +1,4 @@
-const url = "http://backend:7778";
+const url = "http://backend:7770";
 
 export const get = (directory) => fetch(`${url}${directory}`,{
     method: 'GET',
