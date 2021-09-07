@@ -3,9 +3,9 @@ version: '3.3'
 services:
   postgresql:
     image: postgres:13.3
-    container_name: admin-db
+    container_name: db
     ports:
-      - 5432:5432
+      - 5470:5432
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -16,10 +16,10 @@ services:
 
   minio:
     image: minio/minio
-    container_name: admin-storage
+    container_name: storage
     ports:
-      - 9000:9000
-      - 9001:9001
+      - 9070:9000
+      - 9071:9001
     environment:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=1jan@%!)(^
@@ -28,20 +28,65 @@ services:
     volumes:
       - /var/lib/docker/data/storage:/data
     command: server /data
+  
+  turkmenportal:
+    build: ./WebScraper/
+    restart: on-failure
+    environment:
+      - SOURCE=turkmenportal
+    depends_on:
+      - postgresql
+      - minio
+
+  rozetked:
+    build: ./WebScraper/
+    restart: on-failure
+    environment:
+      - SOURCE=rozetked
+    depends_on:
+      - postgresql
+      - minio
+
+  wylsa:
+    build: ./WebScraper/
+    restart: on-failure
+    environment:
+      - SOURCE=wylsa
+    depends_on:
+      - postgresql
+      - minio
+
+  championat:
+    build: ./WebScraper/
+    restart: on-failure
+    environment:
+      - SOURCE=championat
+    depends_on:
+      - postgresql
+      - minio
+
+  ixbt:
+    build: ./WebScraper/
+    restart: on-failure
+    environment:
+      - SOURCE=ixbt
+    depends_on:
+      - postgresql
+      - minio
 
   admin_panel_backend:
-    build: ./admin-panel-backend/
+    build: ./admin-panel/admin-panel-backend/
     container_name: backend
     restart: on-failure
     ports:
-      - 7778:7778
+      - 7770:7770
 
   admin_panel_frontend:
-    build: ./admin-panel-frontend/
+    build: ./admin-panel/admin-panel-frontend/
     container_name: frontend
     restart: on-failure
     ports:
-      - 8087:80
+      - 8070:80
     depends_on: 
       - admin_panel_backend
 
