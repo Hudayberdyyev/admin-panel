@@ -148,7 +148,7 @@ func (r *NewsPostgres) GetContentByNewsTextId(newsTextId int) ([]models.NewsCont
 
 func (r *NewsPostgres) GetNewsCountForAllAuthors() ([]models.AuthorsInfo, error) {
 	var authors []models.AuthorsInfo
-	query := fmt.Sprintf("select a.id, a.name, a.logo , coalesce(count(n.id), 0) as news_count, coalesce(sum(n.open_count), 0) as open_count from %s as a join %s as n on n.author_id=a.id group by a.id", authorsTable, newsTable)
+	query := fmt.Sprintf("select a.id, a.name, a.logo , coalesce(count(n.id), 0) as news_count, coalesce(sum(n.open_count), 0) as open_count from %s as a join %s as n on n.author_id=a.id group by a.id order by a.id asc", authorsTable, newsTable)
 	rows, err := r.db.Query(context.Background(), query)
 	defer rows.Close()
 	if err != nil {

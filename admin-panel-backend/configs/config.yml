@@ -1,5 +1,5 @@
 server:  
-  ip: "backend"
+  ip: "144.91.104.118"
   port: "7770"
   protocol: "http"
 
