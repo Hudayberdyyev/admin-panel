@@ -4,7 +4,7 @@ server:
   protocol: "http"
 
 db:
-  host: "db"
+  host: "admin-db"
   port: 5432
   dbname: "postgres"
   username: "postgres"
@@ -12,7 +12,7 @@ db:
   sslmode: "disable"
 
 storage:
-  host: "storage"
+  host: "admin-storage"
   port: "9000"
   username: "admin"
   password: "1jan@%!)(^"
