@@ -1,0 +1,19 @@
+server:  
+  ip: "backend"
+  port: "7778"
+  protocol: "http"
+
+db:
+  host: "db"
+  port: 5432
+  dbname: "postgres"
+  username: "postgres"
+  password: "@%!)(^"
+  sslmode: "disable"
+
+storage:
+  host: "storage"
+  port: "9000"
+  username: "admin"
+  password: "1jan@%!)(^"
+  sslmode: false
